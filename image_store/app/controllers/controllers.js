@@ -19,8 +19,6 @@ exports.post_image = (req, res) => {
     });
     busboy.on('finish', () => {
         console.log('Image uploaded');
-        res.writeHead(200, { 'Connection': 'close' });
-        res.end("Done");
     });
 
     return req.pipe(busboy);
