@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 
 app.use(express.static(__dirname));
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true }))
 app.use(bodyParser.json())
 
 const dbConfig = require('./config/database.js');
