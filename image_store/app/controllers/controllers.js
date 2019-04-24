@@ -40,7 +40,7 @@ exports.base64 = (req, res) => {
     }
     fs.writeFile('./image_fold/' + filename + extension, base64Data, 'base64', (err) => {
         const new_data = new db.image_model();
-        new_data.url = '/image_fold/' + filename + extension,
+        new_data.url = './image_fold/' + filename + extension,
         new_data.fileName = filename
         new_data.save().then((respo) => {
             res.json(respo);
