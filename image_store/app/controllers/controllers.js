@@ -27,13 +27,15 @@ exports.post_image = (req, res) => {
 
 exports.base64 = (req, res) => {
     var base64Data = req.body.image.replace(/^data:image\/(?:jpeg|jpg|JPEG|JPG|png|PNG);base64,/, "");
+    var data=req.body.image
+    var extension_type= data.substring(data.indexOf('/')+1, data.indexOf(';base64'));
     var filename = RandomString.generate(7)
-    let extension, lowerCaseData = base64Data.toLowerCase();
-    if (lowerCaseData.indexOf('png') !== -1) {
+    //let extension, lowerCaseData = base64Data.toLowerCase();
+    if (extension_type=='png') {
         extension = '.png'
-    } else if (lowerCaseData.indexOf('jpg') !== -1) {
+    } else if (extension_type=='jpg') {
         extension = '.jpg'
-    } else if (lowerCaseData.indexOf('jpeg') !== -1) {
+    } else if (extension_type=='jpeg') {
         extension = '.jpeg'
     }
     fs.writeFile('./image_fold/' + filename + extension, base64Data, 'base64', (err) => {
